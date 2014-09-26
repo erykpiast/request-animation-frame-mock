@@ -1,0 +1,1 @@
+var requestAnimationFrameMock = require('../index');
