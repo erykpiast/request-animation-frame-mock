@@ -13,7 +13,7 @@ module.exports = function (config) {
         port: 9876,
         autoWatch: false,
 
-        browsers: [ 'PhantomJS', 'Chrome' ],
+        browsers: [ 'PhantomJS'/*, 'Chrome'*/ ],
         singleRun: true
     });
 };
