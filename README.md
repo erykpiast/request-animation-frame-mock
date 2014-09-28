@@ -24,8 +24,8 @@ Mock of requestAnimationFrame API.
   
   // interval mode allows you to schedule calling frame callback
   requestAnimationFrameMock.setMode(requestAnimationFrameMock.modes.INTERVAL, {
-    setInterval: window.setInterval,
-    clearInterval: window.clearInterval,
+    setInterval: window.setInterval.bind(window),
+    clearInterval: window.clearInterval.bind(window),
     time: 4, // time to pass to setInterval function
     // result of function below is passed to frame callbacks
     // the first argument is previously returned time (0 initially),
@@ -39,8 +39,8 @@ Mock of requestAnimationFrame API.
   
   // proxy pass mode allows you to test your module with real requestAnimationFrame API
   requestAnimationFrameMock.setMode(requestAnimationFrameMock.modes.PROXY_PASS, {
-    requestAnimationFrame: window.requestAnimationFrame,
-    cancelAnimationFrame: window.cancelAnimationFrame
+    requestAnimationFrame: window.requestAnimationFrame.bind(window),
+    cancelAnimationFrame: window.cancelAnimationFrame.bind(window)
   });
   
   
