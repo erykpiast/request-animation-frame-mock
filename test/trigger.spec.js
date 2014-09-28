@@ -73,7 +73,7 @@ describe('trigger setMode function test', function() {
                 setInterval: jasmine.createSpy('setInterval'),
                 clearInterval: jasmine.createSpy('clearInterval'),
                 time: 1,
-                timeFn: jasmine.createSpy('timeFn')
+                frameTime: jasmine.createSpy('frameTime')
             });
         }).not.toThrow();
         
@@ -98,7 +98,7 @@ describe('trigger setMode:manual function test', function() {
             setInterval: jasmine.createSpy('setInterval'),
             clearInterval: clearInterval,
             time: 1,
-            timeFn: jasmine.createSpy('timeFn')
+            frameTime: jasmine.createSpy('frameTime')
         });
         
         trigger.setMode(trigger.modes.MANUAL);
@@ -146,7 +146,7 @@ describe('trigger setMode:interval function test', function() {
             setInterval: jasmine.createSpy('setInterval'),
             clearInterval: jasmine.createSpy('clearInterval'),
             time: 1,
-            timeFn: jasmine.createSpy('timeFn')
+            frameTime: jasmine.createSpy('frameTime')
         });
         
         expect(cancelAnimationFrame).toHaveBeenCalled();
@@ -157,7 +157,7 @@ describe('trigger setMode:interval function test', function() {
             setInterval: jasmine.createSpy('setInterval'),
             clearInterval: jasmine.createSpy('clearInterval'),
             time: 1,
-            timeFn: jasmine.createSpy('timeFn')
+            frameTime: jasmine.createSpy('frameTime')
         });
         
         expect(function() {
@@ -182,7 +182,7 @@ describe('trigger setMode:interval function test', function() {
             trigger.setMode(trigger.modes.INTERVAL, {
                 setInterval: jasmine.createSpy('setInterval'),
                 clearInterval: jasmine.createSpy('clearInterval'),
-                timeFn: jasmine.createSpy('timeFn')
+                frameTime: jasmine.createSpy('frameTime')
             });
         }).toThrow();
         
@@ -190,7 +190,7 @@ describe('trigger setMode:interval function test', function() {
             trigger.setMode(trigger.modes.INTERVAL, {
                 setInterval: jasmine.createSpy('setInterval'),
                 time: 1,
-                timeFn: jasmine.createSpy('timeFn')
+                frameTime: jasmine.createSpy('frameTime')
             });
         }).toThrow();
         
@@ -198,7 +198,7 @@ describe('trigger setMode:interval function test', function() {
             trigger.setMode(trigger.modes.INTERVAL, {
                 clearInterval: jasmine.createSpy('clearInterval'),
                 time: 1,
-                timeFn: jasmine.createSpy('timeFn')
+                frameTime: jasmine.createSpy('frameTime')
             });
         }).toThrow();
     });
@@ -220,7 +220,7 @@ describe('trigger setMode:proxy_pass function test', function() {
             setInterval: jasmine.createSpy('setInterval'),
             clearInterval: clearInterval,
             time: 1,
-            timeFn: jasmine.createSpy('timeFn')
+            frameTime: jasmine.createSpy('frameTime')
         });
         
         trigger.setMode(trigger.modes.PROXY_PASS, {

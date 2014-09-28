@@ -4,7 +4,7 @@
   "description": "Mock of requestAnimationFrame API.",
   "main": "index.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test:dist"
   },
   "repository": {
     "type": "git",
