@@ -28,7 +28,8 @@ Mock of requestAnimationFrame API.
     clearInterval: window.clearInterval,
     time: 4, // time to pass to setInterval function
     // result of function below is passed to frame callbacks
-    // the first argument is previously returned time (0 initially), the second amount of emitted frames
+    // the first argument is previously returned time (0 initially),
+    // the second amount of emitted frames
     // in current mode (both variables are reseted after each mode change)
     frameTime: function(previousTime, framesCount) {
       return (previousTime + (1000 / 60) + (Math.random() * (1000 / 60)));
