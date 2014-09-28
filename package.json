@@ -1,6 +1,6 @@
 {
   "name": "request-animation-frame-mock",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "Mock of requestAnimationFrame API.",
   "main": "index.js",
   "scripts": {
