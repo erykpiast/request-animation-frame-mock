@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/erykpiast/requestanimationframe-mock.git"
+    "url": "git://github.com/erykpiast/request-animation-frame-mock.git"
   },
   "keywords": [
     "browserify",
@@ -19,9 +19,9 @@
   "author": "Eryk Napierała <eryk.piast@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/erykpiast/requestanimationframe-mock/issues"
+    "url": "https://github.com/erykpiast/request-animation-frame-mock/issues"
   },
-  "homepage": "https://github.com/erykpiast/requestanimationframe-mock",
+  "homepage": "https://github.com/erykpiast/request-animation-frame-mock",
   "devDependencies": {
     "grunt": "~0.4",
     "grunt-browserify": "~3.0",
