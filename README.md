@@ -7,7 +7,7 @@ Mock of requestAnimationFrame API.
 ```
   var requestAnimationFrameMock = require('request-animation-frame-mock');
   
-  var testedModule = proxyrequire('example', {
+  var testedModule = proxyquire('example', {
     'request-animation-frame': requestAnimationFrameMock.mock
     /* mock field is an object with two functions
       requestAnimationFrame and cancelAnimationFrame
