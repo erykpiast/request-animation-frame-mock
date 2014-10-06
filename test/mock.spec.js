@@ -1,11 +1,11 @@
-/* global jasmine, describe, it, expect, beforeEach, afterEach, spyOn */
+/* global jasmine, describe, it, expect, beforeEach, afterEach */
 
 var proxyquire = require('proxyquireify')(require);
 
 var queueMock = {
-    splice: jasmine.createSpy('queue.splice'),
-    push: jasmine.createSpy('queue.push'),
-    indexOf: jasmine.createSpy('queue.indexOf').and.returnValue(0)
+    push: jasmine.createSpy('queue.push').and.returnValue(1),
+    pop: jasmine.createSpy('queue.pop'),
+    clear: jasmine.createSpy('queue.clear')
 };
 var triggerMock = {
     getQueue: jasmine.createSpy('trigger.getQueue').and.returnValue(queueMock)
@@ -81,23 +81,8 @@ describe('mock.requestAnimationFrame function test', function() {
     });
     
     
-    it('Should return unsigned integer', function() {
-        expect(id).toBeDefined();
-        expect(typeof id).toBe('number');
-        expect(id).toBeGreaterThan(0);
-        expect(id).toEqual(Math.abs(id));
-    });
-    
-    
-    it('Should return different id each time its called', function() {
-        var ids = [ ];
-        for(var i = 0; i < 100; i++) {
-            ids.push(mock.requestAnimationFrame(frameDrawer));
-        }
-        
-        ids.forEach(function(id, index) {
-            expect(ids.indexOf(id)).toBe(index);
-        });
+    it('Should return value returned by queue.push', function() {
+        expect(id).toBe(1);
     });
     
     
@@ -121,14 +106,14 @@ describe('mock.cancelAnimationFrame function test', function() {
         id = null;
         frameDrawer = null;
         
-        queueMock.splice.calls.reset();
+        queueMock.pop.calls.reset();
     });
     
     
     it('Should splice request from to the queue', function() {
-        expect(queueMock.splice).toHaveBeenCalled();
-        expect(queueMock.splice.calls.count()).toBe(1);
-        expect(queueMock.splice.calls.argsFor(0)).toEqual([ 0, 1 ]);
+        expect(queueMock.pop).toHaveBeenCalled();
+        expect(queueMock.pop.calls.count()).toBe(1);
+        expect(queueMock.pop.calls.argsFor(0)[0]).toEqual(id);
     });
 
 });

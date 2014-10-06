@@ -1,4 +1,4 @@
-/* global jasmine, describe, it, expect, beforeEach, afterEach, spyOn */
+/* global jasmine, describe, it, expect, beforeEach, afterEach */
 
 var proxyquire = require('proxyquireify')(require);
 
@@ -44,8 +44,7 @@ describe('trigger getQueue function test', function() {
     
     it('Should queue has a few methods', function() {
         expect(typeof queue.push).toBe('function');
-        expect(typeof queue.splice).toBe('function');
-        expect(typeof queue.indexOf).toBe('function');
+        expect(typeof queue.pop).toBe('function');
     });
 
 });
@@ -287,7 +286,7 @@ describe('trigger trigger function test', function() {
         frameDrawer1 = null;
         frameDrawer2 = null;
         
-        queue.splice(0, queue.length);
+        queue.clear();
     });
     
     
@@ -339,6 +338,67 @@ describe('trigger trigger function test', function() {
         expect(function () {
             trigger.trigger(NaN);
         }).toThrow();
+    });
+
+});
+
+
+describe('requesting and canceling test', function() {
+    var queue;
+    var id;
+    var frameDrawer1;
+    var frameDrawer2;
+    var frameDrawer3;
+    var request1;
+    var request2;
+    var request3;
+    
+    beforeEach(function() {
+        queue = trigger.getQueue();
+
+        frameDrawer1 = jasmine.createSpy('frameDrawer1').and.callFake(function() {
+            queue.pop(request2);
+
+            request3 = queue.push(frameDrawer3);
+        });
+        frameDrawer2 = jasmine.createSpy('frameDrawer2');
+        frameDrawer3 = jasmine.createSpy('frameDrawer3');
+
+        request1 = queue.push(frameDrawer1);
+        request2 = queue.push(frameDrawer2);
+
+        trigger.trigger(10);
+    });
+    
+    afterEach(function() {
+        queue = null;
+
+        id = null;
+        frameDrawer1 = null;
+        frameDrawer2 = null;
+        frameDrawer3 = null;
+
+        request1 = null;
+        request2 = null;
+        request3 = null;
+    });
+    
+    
+    it('Should allow to cancel animation frame scheduled for the same queue', function() {
+        expect(frameDrawer1).toHaveBeenCalled();
+        expect(frameDrawer2).not.toHaveBeenCalled();
+    });
+
+
+    it('Should prevent adding functions to current queue', function() {
+        expect(frameDrawer3).not.toHaveBeenCalled();
+    });
+
+
+    it('Should allow to add functions to next queue', function() {
+        trigger.trigger(15);
+
+        expect(frameDrawer3).toHaveBeenCalled();
     });
 
 });
