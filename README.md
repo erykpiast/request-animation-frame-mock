@@ -45,9 +45,9 @@ Mock of requestAnimationFrame API.
   });
   
   
-  // you can get queue of frame callbacks; it's an array
+  // you can get queue of frame callbacks; it's plain object
   var queue = requestAnimationFrameMock.getQueue();
   
-  console.log(queue.length); // or something
+  console.log(Object.keys(queue).length); // or something
 
 ```
