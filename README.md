@@ -37,7 +37,8 @@ Mock of requestAnimationFrame API.
   });
   
   
-  // proxy pass mode allows you to test your module with real requestAnimationFrame API
+  // proxy pass mode allows you to test your module
+  // with real requestAnimationFrame API
   requestAnimationFrameMock.setMode(requestAnimationFrameMock.modes.PROXY_PASS, {
     requestAnimationFrame: window.requestAnimationFrame.bind(window),
     cancelAnimationFrame: window.cancelAnimationFrame.bind(window)
